@@ -28,11 +28,15 @@
   },
   "dependencies": {
     "babel-preset-stage-1": "*",
+    "css-loader": "^0.25.0",
     "lodash": "*",
     "react": "*",
     "react-dom": "*",
     "react-redux": "*",
     "react-router": "*",
-    "redux": "*"
+    "redux": "*",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.3.1"
   }
 }
