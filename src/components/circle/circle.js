@@ -13,8 +13,27 @@ class Circle extends React.Component {
     this.props.hit(this.props.id);
   }
 
+  renderCircles() {
+    return (
+      <g onClick={this.hit} className="hit-group">
+        <circle r="150" cx={this.props.x} cy={this.props.y} className="circle-timer">
+          <animate
+            attributeName="r"
+            from="150"
+            to="40"
+            dur="1s"
+            begin="DOMNodeInsertedIntoDocument"
+            fill="freeze" />
+        </circle>
+        <circle r="40" cx={this.props.x} cy={this.props.y} className="circle"/>
+        <text textAnchor="middle" x={this.props.x} y={this.props.y + 10} className="circle-text">{this.props.id}</text>
+      </g>
+    );
+  }
+
+
   render() {
-    return <circle onClick={this.hit} cx={this.props.x} cy={this.props.y} className="circle"/>
+    return this.renderCircles();
   }
 }
 

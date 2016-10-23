@@ -3,15 +3,28 @@ div {
 }
 
 .circle {
-  fill-opacity: 0.5;
   stroke-width: 4;
-  fill: #3080d0;
-  stroke: #3080d0;
+  fill: #4c71f7;
+  stroke: #2856fc;
+}
+
+.hit-group {
   cursor: pointer;
-  r: 50px;
+}
+
+.circle-timer {
+  @extend .circle;
+  fill: transparent;
+  stroke: #fff;
+}
+
+.circle-text {
+  fill: #fff;
+  font-size: 40px;
 }
 
 .field {
   width: 100%;
-  height: 85vh;
+  height: 100vh;
+  background: #000;
 }
