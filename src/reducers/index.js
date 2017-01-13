@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import shapes from './shape';
 import selectedMap from './selected-map';
-import score from './score';
+import game from './game';
 
 const rootReducer = combineReducers({
   selectedMap,
-  shapes,
-  score
+  game,
+  shapes
 });
 
 export default rootReducer;

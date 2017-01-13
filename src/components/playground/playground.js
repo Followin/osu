@@ -18,15 +18,15 @@ class Playground extends Component {
     return ( 
       <div>
           <button onClick={this.startGame}>Start</button>
-          <Map objects={this.props.shapes}></Map>
-          <span>Score: {this.props.score}</span>
+          <Map objects={this.props.shapes} delay={this.props.selectedMap.options.delay.positive}></Map>
+          <span>Score: {this.props.game.score}</span>
       </div>
     );
   }
 }
 
-function mapStateToProps({shapes, selectedMap, score}) {
-  return { shapes, selectedMap, score }
+function mapStateToProps({shapes, selectedMap, game }) {
+  return { shapes, selectedMap, game }
 }
 
 export default connect(mapStateToProps, actions)(Playground);

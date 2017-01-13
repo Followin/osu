@@ -10,23 +10,37 @@ class Circle extends React.Component {
   }
 
   hit() {
-    this.props.hit(this.props.id);
+    this.props.hit({ 
+      id: this.props.id,
+      deviation: new Date(this.props.startTime.getTime() + this.props.time).diff(new Date()).milliseconds
+    });
   }
 
   renderCircles() {
     return (
-      <g onClick={this.hit} className="hit-group">
+      <g className="hit-group">
         <circle r="150" cx={this.props.x} cy={this.props.y} className="circle-timer">
           <animate
             attributeName="r"
             from="150"
             to="40"
-            dur="1s"
+            dur={`${this.props.delay}ms`}
             begin="DOMNodeInsertedIntoDocument"
-            fill="freeze" />
+            fill="freeze"
+            id={`circle-timer-animation-${this.props.id}`}/>
         </circle>
-        <circle r="40" cx={this.props.x} cy={this.props.y} className="circle"/>
-        <text textAnchor="middle" x={this.props.x} y={this.props.y + 10} className="circle-text">{this.props.id}</text>
+        <g onClick={this.hit} >
+          <circle r="40" cx={this.props.x} cy={this.props.y} className="circle"> 
+            <animate
+              attributeName="stroke"
+              from="#2856fc"
+              to="#fff"
+              dur={`50ms`}
+              begin={`circle-timer-animation-${this.props.id}.begin + ${this.props.delay - 50}ms`}
+              fill="freeze"/>
+          </circle>
+          <text textAnchor="middle" x={this.props.x} y={this.props.y + 10} className="circle-text">{this.props.id}</text>
+        </g>
       </g>
     );
   }
@@ -37,4 +51,8 @@ class Circle extends React.Component {
   }
 }
 
-export default connect(null, actions)(Circle);
+function mapStateToProps({game}){
+  return { startTime: game.startTime }
+}
+
+export default connect(mapStateToProps, actions)(Circle);

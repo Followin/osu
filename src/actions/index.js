@@ -1,27 +1,43 @@
 import * as types from './types';
 
 export function startGame(map) {
+  var startTime = new Date().getTime();
+  console.log(`game started on ${startTime}`);
+
   return (dispatch) => {
-    for(let timePoint in map) {
+    dispatch({
+      type: types.START_GAME
+    });
+
+    for(let timePoint in map.points) {
+      let time = Number.parseInt(timePoint);
+      let shape = map.points[timePoint];
+
       setTimeout(() => {
+        var currentTime = new Date().getTime();
+        var delay = currentTime - startTime;
+        console.log(`push ${shape.id} on ${currentTime} with delay of ${delay}`);
         dispatch({
           type: types.PUSH_SHAPE,
-          payload: map[timePoint]
+          payload: shape
         });
+
         setTimeout(() => {
+        console.log("pop", shape.id);
           dispatch({
             type: types.TIMEOUT,
-            payload: map[timePoint].id
+            payload: shape.id
           });
-        }, map[timePoint].duration);
-      }, timePoint);
+        }, map.options.delay.positive + map.options.delay.negative);
+
+      }, time - map.options.delay.positive);
     }
   }
 }
 
-export function hit(id) {
+export function hit(obj) {
   return {
     type: types.HIT,
-    payload: id
+    payload: obj
   }
 }

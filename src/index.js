@@ -1,4 +1,5 @@
 require('../style/style.styl');
+require('./utils/date-extensions');
 
 import React from 'react';
 import ReactDOM from 'react-dom';

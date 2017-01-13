@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --inline --hot --port 3050",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +26,8 @@
     "mocha": "*",
     "react-addons-test-utils": "*",
     "webpack": "*",
-    "webpack-dev-server": "*"
+    "webpack-dev-server": "*",
+    "@kadira/storybook": "^2.21.0"
   },
   "dependencies": {
     "babel-preset-stage-1": "*",
